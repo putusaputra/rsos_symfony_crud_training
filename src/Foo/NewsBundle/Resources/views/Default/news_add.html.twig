@@ -1,0 +1,5 @@
+{% if form.delete is defined %}
+	Are you sure you want to delete the news page: {{ form.vars.value.title }} ?
+{% endif %}
+
+{{ form(form) }}

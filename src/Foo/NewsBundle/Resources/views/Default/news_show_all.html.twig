@@ -1,0 +1,13 @@
+{% for flash_message in app.session.flashBag.get('notice') %}
+	<div class="flash-notice">
+		{{ flash_message }}
+	</div>
+{% endfor %}
+
+<a href="{{ path('foo_news_add') }}">Add news</a>
+
+{% for new in news %}
+
+<h3><a href="{{ path('foo_news_show', {'id': new.Id }) }}">{{ new.Title }}</a></h3>
+<a href="{{ path('foo_news_edit', {'id': new.Id }) }}">Edit</a> | <a href="{{ path('foo_news_delete', {'id': new.Id }) }}">Delete</a><hr />
+{% endfor %}
