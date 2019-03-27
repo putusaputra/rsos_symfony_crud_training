@@ -1,5 +1,39 @@
-{% if form.delete is defined %}
-	Are you sure you want to delete the news page: {{ form.vars.value.title }} ?
-{% endif %}
+{% extends 'base.html.twig' %}
 
-{{ form(form) }}
+{% block body %}
+
+<div class="card">
+  <div class="card-header">
+    {% if status == 'add' %}
+    	Add News
+    {% elseif status == 'edit' %}
+    	Edit News
+    {% endif %}
+  </div>
+  <div class="card-body">
+
+    {{ form_start(form) }}
+		
+		{{ form_errors(form) }}
+
+		<div class="form-group col-lg-4">
+		{{ form_row(form.title, {'attr': {'class': 'form-control'}}) }}
+		</div>
+
+		<div class="form-group col-lg-4">
+		{{ form_row(form.body, {'attr': {'class': 'form-control'}}) }}
+		</div>
+
+		<div class="form-group col-lg-4">
+			{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}})}}
+		</div>
+
+	{{ form_end(form) }}
+    
+  </div>
+</div>
+
+	
+
+{% endblock %}
+

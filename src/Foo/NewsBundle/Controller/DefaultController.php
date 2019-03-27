@@ -74,6 +74,7 @@ class DefaultController extends Controller
     	}
 
     	$build['form'] = $form->createView();
+        $build['status'] = 'add';
     	return $this->render('FooNewsBundle:Default:news_add.html.twig', $build);
     }
 
@@ -97,7 +98,6 @@ class DefaultController extends Controller
 
     	if ($form->isValid()) {
     		$em->flush();
-    		//return new Response('News updated successfully');
     		//adding redirect and flash message
     		$request->getSession()->getFlashBag()->add(
     			'notice',
@@ -107,7 +107,7 @@ class DefaultController extends Controller
     	}
 
     	$build['form'] = $form->createView();
-
+        $build['status'] = 'edit';
     	return $this->render('FooNewsBundle:Default:news_add.html.twig', $build);
     }
 
@@ -141,7 +141,6 @@ class DefaultController extends Controller
     	//without redirecting
     	$em->remove($news);
     	$em->flush();
-    	//return new Response('News deleted successfully');
     	//adding redirect and flash message
 		$request->getSession()->getFlashBag()->add(
 			'notice',

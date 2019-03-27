@@ -1,13 +1,52 @@
-{% for flash_message in app.session.flashBag.get('notice') %}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="card">
+  <div class="card-header">
+    List Of All News
+  </div>
+  <div class="card-body">
+
+    {% for flash_message in app.session.flashBag.get('notice') %}
 	<div class="flash-notice">
-		{{ flash_message }}
+		<div class="alert alert-success" role="alert">
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		  {{ flash_message }}
+		</div>
 	</div>
-{% endfor %}
+	{% endfor %}
 
-<a href="{{ path('foo_news_add') }}">Add news</a>
+	<a class="btn btn-success" href="{{ path('foo_news_add') }}">Add news</a>
 
-{% for new in news %}
+	<div class="card">
+		{% for new in news %}
+			<div class="card-body">
+				<h5 class="card-title"><a href="{{ path('foo_news_show', {'id': new.Id }) }}">{{ new.Title }}</a></h5>
+	    		<a class="btn btn-primary" href="{{ path('foo_news_edit', {'id': new.Id }) }}" title="Edit">
+	    			<img src="{{ asset('icons/pencil.svg') }}"/>
+	    		</a>
+	    		<a class="btn btn-primary" href="{{ path('foo_news_delete', {'id': new.Id }) }}" title="Delete">
+	    			<img src="{{ asset('icons/trashcan.svg') }}"/>
+	    		</a>
+			</div>
+	{% endfor %}
+    </div>
 
-<h3><a href="{{ path('foo_news_show', {'id': new.Id }) }}">{{ new.Title }}</a></h3>
-<a href="{{ path('foo_news_edit', {'id': new.Id }) }}">Edit</a> | <a href="{{ path('foo_news_delete', {'id': new.Id }) }}">Delete</a><hr />
-{% endfor %}
+  </div>
+</div>
+
+{% endblock %}
+
+{% block customjs %}
+	<script type='text/javascript'>
+		$(document).ready(function(){
+			window.setTimeout(function() {
+		    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+		        $(this).remove(); 
+		    });
+			}, 4000);
+		});
+	</script>
+{% endblock %}
+
