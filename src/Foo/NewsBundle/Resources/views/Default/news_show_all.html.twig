@@ -26,11 +26,11 @@
 	    		<a class="btn btn-primary" href="{{ path('foo_news_edit', {'id': new.Id }) }}" title="Edit">
 	    			<img src="{{ asset('icons/pencil.svg') }}"/>
 	    		</a>
-	    		<a class="btn btn-primary" href="{{ path('foo_news_delete', {'id': new.Id }) }}" title="Delete">
+	    		<a class="btn btn-danger" href="{{ path('foo_news_delete', {'id': new.Id }) }}" title="Delete">
 	    			<img src="{{ asset('icons/trashcan.svg') }}"/>
 	    		</a>
 			</div>
-	{% endfor %}
+		{% endfor %}
     </div>
 
   </div>
@@ -42,9 +42,9 @@
 	<script type='text/javascript'>
 		$(document).ready(function(){
 			window.setTimeout(function() {
-		    $(".alert").fadeTo(500, 0).slideUp(500, function(){
-		        $(this).remove(); 
-		    });
+			    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+			        $(this).remove(); 
+			    });
 			}, 4000);
 		});
 	</script>

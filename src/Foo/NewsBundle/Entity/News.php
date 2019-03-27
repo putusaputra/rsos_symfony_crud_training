@@ -4,6 +4,9 @@ namespace Foo\NewsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+//add server side validation
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * News
  *
@@ -18,6 +21,7 @@ class News
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
      */
     private $id;
 
@@ -25,6 +29,8 @@ class News
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     *
+     * @Assert\NotBlank()
      */
     private $title;
 
@@ -32,6 +38,8 @@ class News
      * @var string
      *
      * @ORM\Column(name="body", type="text")
+     *
+     * @Assert\NotBlank()
      */
     private $body;
 
@@ -39,6 +47,9 @@ class News
      * @var \DateTime
      *
      * @ORM\Column(name="created_date", type="datetime")
+     *
+     * @Assert\NotBlank()
+     * @Assert\Type("\DateTime")
      */
     private $createdDate;
 
